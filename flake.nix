@@ -21,7 +21,14 @@
   };
 
   outputs =
-    { self, nixpkgs, cl-nix-forge, cl-weave, treefmt-nix, ... }:
+    {
+      self,
+      nixpkgs,
+      cl-nix-forge,
+      cl-weave,
+      treefmt-nix,
+      ...
+    }:
     let
       # aarch64-darwin included alongside the CI-gated x86_64-linux so
       # `nix build`/`nix flake check` work on the aarch64-darwin dev machine
