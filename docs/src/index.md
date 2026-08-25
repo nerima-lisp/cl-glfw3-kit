@@ -1,11 +1,14 @@
 # cl-glfw3-kit
 
-Common Lisp CFFI bindings for [GLFW3](https://www.glfw.org/), the
-cross-platform C library for creating windows and OpenGL/Vulkan contexts and
-handling keyboard, mouse, and joystick input.
+Common Lisp bindings for [GLFW3](https://www.glfw.org/), the
+cross-platform C library for creating windows and OpenGL/OpenGL-ES
+contexts and handling keyboard, mouse, and monitor input.
 
 ## Status
 
-This repository is provisioning only: the GitHub repo, CI, Cachix cache, and
-documentation site exist, but no GLFW3 binding has been written yet. See the
-[roadmap](project/roadmap.md) for what implementing one requires.
+Window lifecycle, hints, the event loop, context management, input
+queries, the seven core window callbacks, and monitor/video-mode
+enumeration are bound, via SBCL's own `sb-alien` (not cffi). See
+[Getting started](getting-started.md) for a worked example, the
+[API reference](reference/api.md) for the full surface, and the
+[roadmap](project/roadmap.md) for what is deliberately not bound yet.
