@@ -18,6 +18,8 @@
   (format t "tests: system definition~%")
   (push root asdf:*central-registry*)
   (push (merge-pathnames #P"../cl-weave/" root) asdf:*central-registry*)
+  (push (merge-pathnames #P"../cl-boundary-kit/" root) asdf:*central-registry*)
+  (push (merge-pathnames #P"../cl-host-kit/" root) asdf:*central-registry*)
   (format t "tests: run~%")
   (asdf:test-system "cl-glfw3-kit")
   (format t "tests: complete~%")
