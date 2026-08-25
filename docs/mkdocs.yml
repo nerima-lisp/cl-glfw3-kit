@@ -1,5 +1,5 @@
 site_name: cl-glfw3-kit
-site_description: Common Lisp bindings for GLFW3 window, input, and context management
+site_description: SBCL sb-alien bindings for GLFW3 window, input, and context management
 site_url: https://nerima-lisp.github.io/cl-glfw3-kit/
 repo_url: https://github.com/nerima-lisp/cl-glfw3-kit
 repo_name: nerima-lisp/cl-glfw3-kit

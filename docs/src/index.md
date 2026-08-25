@@ -4,6 +4,9 @@ Common Lisp bindings for [GLFW3](https://www.glfw.org/), the
 cross-platform C library for creating windows and OpenGL/OpenGL-ES
 contexts and handling keyboard, mouse, and monitor input.
 
+The current implementation targets SBCL and uses its built-in `sb-alien`
+FFI; it does not depend on CFFI.
+
 ## Status
 
 Window lifecycle, hints, the event loop, context management, input
