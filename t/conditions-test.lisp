@@ -1,4 +1,3 @@
-;;;; t/conditions-test.lisp
 (in-package #:cl-glfw3-kit/test)
 
 (describe
@@ -12,12 +11,7 @@
       "~A is a CL-GLFW3-KIT-ERROR that reports its description"
       (condition-type)
     (it "is a proper CL-GLFW3-KIT-ERROR subtype"
-      ;; SIGNALS quotes its condition-type argument (see cl-weave's own
-      ;; (defmacro signals (condition-type &body body) `(expect (lambda ()
-      ;; ,@body) :to-throw ',condition-type))), so it only accepts a literal
-      ;; type name -- CONDITION-TYPE here is a DESCRIBE-EACH binding, a
-      ;; runtime value, so EXPECT's own :TO-THROW clause is used directly
-      ;; below instead, which evaluates its expected-value argument normally.
+      ;; CONDITION-TYPE is a runtime value, so use EXPECT's dynamic throw check.
       (expect (subtypep condition-type 'cl-glfw3-kit-error) :to-be-truthy))
     (it "carries and reports the description it was signalled with"
       (handler-case (error condition-type :description "boom")

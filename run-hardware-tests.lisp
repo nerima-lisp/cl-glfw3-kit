@@ -1,10 +1,3 @@
-;;;; run-hardware-tests.lisp
-;;;;
-;;;; Bootstrap script: registers this checkout's and cl-weave's ASDF
-;;;; definitions and runs cl-glfw3-kit/hardware-test, the real-GLFWwindow
-;;;; suite -- needs a real display, so run only by hand (`nix run
-;;;; .#test-hardware`), never as part of `nix flake check`.
-
 (require :asdf)
 (format t "hardware-tests: bootstrap~%")
 

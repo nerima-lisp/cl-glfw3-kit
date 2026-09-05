@@ -1,12 +1,3 @@
-;;;; t/window-test.lisp
-;;;;
-;;;; Exercises WITH-GLFW-WINDOW/CALL-WITH-GLFW-WINDOW's own logic against
-;;;; the *CREATE-WINDOW-FUNCTION*/*DESTROY-WINDOW-FUNCTION* stub -- never
-;;;; against a real GLFWwindow, which glfwCreateWindow cannot produce
-;;;; without a display. glfwWindowHint/glfwDefaultWindowHints ARE called
-;;;; for real here: both write into an in-memory hints struct with no
-;;;; platform-backend dependency, confirmed safe to call before glfwInit.
-;;;; See t/hardware/hardware-test.lisp for a real end-to-end window.
 (in-package #:cl-glfw3-kit/test)
 
 (describe
@@ -25,11 +16,7 @@
     (call-with-stubbed-window
      (lambda (boundary)
        (with-glfw-window (window :width 800 :height 600 :title "test") window)
-       ;; Each fresh (%NULL-POINTER) call allocates a new alien-value
-       ;; wrapper for the same SAP address, so the trailing two arguments
-       ;; are compared by null-ness (SB-ALIEN:NULL-ALIEN) rather than by
-       ;; EQUAL, which is never true across two separately-allocated
-       ;; wrappers even when both represent the same null pointer.
+       ;; Alien wrappers for the same null pointer are not EQUAL.
        (destructuring-bind (width height title monitor share)
            (getf (first (recording-boundary-calls boundary)) :arguments)
          (expect (list width height title) :to-equal (list 800 600 "test"))
@@ -57,11 +44,3 @@
                         (recording-boundary-calls boundary))
                :to-equal (list :create-window)))
      :create-result (%null-pointer))))
-
-;;; Window PROPERTY accessors (WINDOW-SHOULD-CLOSE-P, WINDOW-TITLE,
-;;; WINDOW-SIZE, FRAMEBUFFER-SIZE, and their setters) are not tested here.
-;;; Each calls a real GLFW function on the window's own pointer directly --
-;;; unlike creation/destruction, there is no seam for them to go through,
-;;; so calling one against *STUB-WINDOW-POINTER* (not a pointer GLFW ever
-;;; allocated) would be undefined behaviour, not a controlled test double.
-;;; See t/hardware/hardware-test.lisp, where they run against a real window.

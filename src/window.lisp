@@ -1,4 +1,3 @@
-;;;; src/window.lisp
 (in-package #:cl-glfw3-kit)
 
 (defstruct (glfw-window (:constructor %make-glfw-window (pointer)) (:copier nil))
@@ -66,20 +65,10 @@ list of (HINT-ID . INTEGER-VALUE) pairs, ready for %APPLY-WINDOW-HINTS."
     (%glfw-window-hint (car pair) (cdr pair))))
 
 (defvar *create-window-function* #'%glfw-create-window
-  "The function CALL-WITH-GLFW-WINDOW calls to create the underlying
-GLFWwindow*, as (FUNCALL *CREATE-WINDOW-FUNCTION* WIDTH HEIGHT TITLE MONITOR
-SHARE). Rebindable, together with *DESTROY-WINDOW-FUNCTION*, so tests can
-exercise window-creation argument marshalling and error handling without a
-real display -- see t/helpers-window.lisp. The two are rebound as a pair:
-a stubbed pointer from this function must never reach the real
-glfwDestroyWindow, which is undefined behaviour on a pointer GLFW never
-allocated. Defaults to %GLFW-CREATE-WINDOW, the real GLFW call.")
+  "The function used to create the underlying GLFWwindow*.")
 
 (defvar *destroy-window-function* #'%glfw-destroy-window
-  "The function CALL-WITH-GLFW-WINDOW calls to destroy the window
-*CREATE-WINDOW-FUNCTION* created, as (FUNCALL *DESTROY-WINDOW-FUNCTION*
-POINTER). See *CREATE-WINDOW-FUNCTION* -- the two are rebound together.
-Defaults to %GLFW-DESTROY-WINDOW, the real GLFW call.")
+  "The function used to destroy a window.")
 
 (defun call-with-glfw-window (continuation &key (width 640) (height 480)
                                                  (title "") hints)

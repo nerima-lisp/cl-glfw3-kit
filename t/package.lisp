@@ -1,4 +1,3 @@
-;;;; t/package.lisp
 (defpackage #:cl-glfw3-kit/test
   (:use #:cl)
   (:shadowing-import-from #:cl-weave #:describe)
@@ -42,11 +41,7 @@
                 #:primary-monitor #:list-monitors #:video-mode
                 #:video-mode-width #:video-mode-height #:video-mode-red-bits
                 #:video-mode-green-bits #:video-mode-blue-bits #:video-mode-refresh-rate)
-  ;; internal (unexported from CL-GLFW3-KIT) symbols the test suite reaches
-  ;; into directly, to test pure logic below the FFI boundary without a
-  ;; real GLFW call -- see CODING_STANDARD.md: exported vs. internal is
-  ;; entirely a matter of the DEFPACKAGE :EXPORT list, so this is ordinary
-  ;; package-qualified access, not a hack.
+  ;; Internal symbols used to test logic below the FFI boundary.
   (:import-from #:cl-glfw3-kit
                 #:%encode-window-hint-value #:%encode-window-hints
                 #:%key-keyword #:%mouse-button-keyword #:%action-keyword #:%decode-mods
@@ -62,11 +57,7 @@
 (in-package #:cl-glfw3-kit/test)
 
 (defun run-tests (&key (reporter :spec))
-  "Plain (uninstrumented) test run -- drives checks.default/apps.test via
-run-tests.lisp. See run-coverage.lisp for the coverage-gated variant: sb-cover
-instrumentation needs its own forced recompile before the suite runs, which
-this entry point (shared with an ordinary developer test-run) deliberately
-does not pay for."
+  "Run the uninstrumented test suite."
   (unless (run-all :reporter reporter :timeout-ms 20000)
     (error "cl-glfw3-kit test suite failed"))
   (format t "~&cl-glfw3-kit/test: successful completion with 0 failures~%")

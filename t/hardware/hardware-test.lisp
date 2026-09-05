@@ -1,8 +1,3 @@
-;;;; t/hardware/hardware-test.lisp
-;;;;
-;;;; Every case here needs a real display: run only by hand (`nix run
-;;;; .#test-hardware`), never as part of `nix flake check`. See
-;;;; cl-glfw3-kit.asd's cl-glfw3-kit/hardware-test system.
 (in-package #:cl-glfw3-kit/hardware-test)
 
 (describe
@@ -81,11 +76,7 @@
             (for-each-frame (win window)
               (declare (ignore win))
               (set-window-should-close window t)))
-          ;; No resize actually happened (the window is invisible and
-          ;; untouched), so this only proves installation/teardown ran
-          ;; without error -- the callback firing at all is proven by
-          ;; t/hardware/hardware-test.lisp's real usage in a live session,
-          ;; matching how docs/src/getting-started.md's example is used.
+          ;; The invisible window is not resized; this checks setup and teardown.
           (expect (listp window-size-events) :to-be-truthy))))))
 
 (describe

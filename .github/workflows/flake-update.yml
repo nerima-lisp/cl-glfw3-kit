@@ -27,15 +27,8 @@ jobs:
       # keeping the nix-installer SHA pin in exactly one place.
       - uses: ./.github/actions/nix-setup
 
-      # Opens/refreshes a PR bumping every flake input. This is the mechanism
-      # that keeps the org's nixpkgs pins converged: without it they drift apart
-      # (they spanned 2026-04-14 to 2026-07-23 before this workflow existed) and
-      # no amount of manual alignment holds for more than a week.
-      #
-      # NOTE: this uses the default GITHUB_TOKEN, so GitHub will NOT trigger CI
-      # on the bot's PR (loop-prevention). Re-run CI by pushing an empty commit
-      # or closing and reopening the PR; swap in a PAT via `token:` if
-      # self-triggering CI is required.
+      # Open or refresh a PR for the flake-input updates. The default token
+      # does not trigger another workflow run, preventing update loops.
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@834c491b2ece4de0bbd00d85214bb5e83b4da5c6 # v28
         with:

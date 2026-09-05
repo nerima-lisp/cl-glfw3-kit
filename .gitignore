@@ -28,9 +28,7 @@ coverage.dat
 /.paredit.cleanup/
 
 # --- Credentials ---
-# Not because anyone plans to put a key here, but because the cost of the one
-# time it happens by accident is a rotation across the whole org. See
-# SUPPLY_CHAIN.md for what to do if one is committed anyway.
+# Ignore credential files to reduce accidental exposure.
 .env
 .env.*
 !.env.example

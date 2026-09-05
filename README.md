@@ -8,7 +8,7 @@ Common Lisp bindings for [GLFW3](https://www.glfw.org/), targeting SBCL —
 window, input, and OpenGL/OpenGL-ES context management, via SBCL's own
 `sb-alien` FFI rather than cffi. See
 [docs/src/project/roadmap.md](docs/src/project/roadmap.md) for the bound
-surface and what is deliberately out of scope.
+surface and what is out of scope.
 
 Full documentation is published at <https://nerima-lisp.github.io/cl-glfw3-kit/>.
 The source for that site lives in [docs/src/](docs/src/).
@@ -42,8 +42,8 @@ inputs.cl-glfw3-kit = {
 };
 ```
 
-Note the pinned tag. Consumers inside this org must pin a release tag rather
-than follow the default branch.
+Note the pinned tag. Consumers should pin a release tag rather than follow the
+default branch.
 
 ## Documentation
 
@@ -62,15 +62,15 @@ nix fmt               # format Nix sources (treefmt)
 ```
 
 Tests live in `t/` and run under [cl-weave](https://github.com/nerima-lisp/cl-weave),
-the org's test framework, with [cl-boundary-kit](https://github.com/nerima-lisp/cl-boundary-kit)
-providing the recording-boundary test doubles the default suite uses in
-place of a real display. See
+with [cl-boundary-kit](https://github.com/nerima-lisp/cl-boundary-kit) providing
+the recording-boundary test doubles the default suite uses in place of a real
+display. See
 [the roadmap](https://nerima-lisp.github.io/cl-glfw3-kit/project/roadmap/)
 for why the two test systems are split.
 
 ## Contributing
 
-See the org-wide [CONTRIBUTING](https://github.com/nerima-lisp/.github/blob/main/CONTRIBUTING.md)
+See the [CONTRIBUTING](https://github.com/nerima-lisp/.github/blob/main/CONTRIBUTING.md)
 guide and the [package standard](https://github.com/nerima-lisp/.github/blob/main/PACKAGE_STANDARD.md).
 
 ## Support

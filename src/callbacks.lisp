@@ -1,4 +1,3 @@
-;;;; src/callbacks.lisp
 (in-package #:cl-glfw3-kit)
 
 (define-glfw-function %glfw-set-key-callback "glfwSetKeyCallback" (* t)
@@ -82,9 +81,6 @@ CONTINUATION runs, torn down automatically when this function returns."
          (close-callback sb-alien:void ((raw-window (* t)))
            (declare (ignore raw-window))
            (when on-close (funcall on-close window))))
-      ;; One (supplied? setter callback) row per GLFW event, so installing
-      ;; and tearing down all seven is a loop over data rather than the same
-      ;; seven-line WHEN clause written out twice.
       (let ((rows (list (list on-key #'%glfw-set-key-callback key-callback)
                          (list on-mouse-button #'%glfw-set-mouse-button-callback
                                mouse-button-callback)

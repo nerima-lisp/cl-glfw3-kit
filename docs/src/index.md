@@ -14,4 +14,4 @@ queries, the seven core window callbacks, and monitor/video-mode
 enumeration are bound, via SBCL's own `sb-alien` (not cffi). See
 [Getting started](getting-started.md) for a worked example, the
 [API reference](reference/api.md) for the full surface, and the
-[roadmap](project/roadmap.md) for what is deliberately not bound yet.
+[roadmap](project/roadmap.md) for what is not bound yet.
