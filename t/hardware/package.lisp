@@ -1,4 +1,3 @@
-;;;; t/hardware/package.lisp
 (defpackage #:cl-glfw3-kit/hardware-test
   (:use #:cl)
   (:shadowing-import-from #:cl-weave #:describe)

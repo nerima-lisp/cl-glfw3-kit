@@ -1,4 +1,3 @@
-;;;; t/library-test.lisp
 (in-package #:cl-glfw3-kit/test)
 
 (describe
@@ -20,10 +19,5 @@
   "%SIGNAL-GLFW-ERROR"
   (it "signals the mapped condition for a known GLFW error code"
     (signals glfw-out-of-memory (%signal-glfw-error #x00010005 "no memory")))
-  (it "signals GLFW-UNKNOWN-ERROR for an unmapped code, as a forward-compatible default"
-    ;; Unreachable against real GLFW 3.4, whose error codes are all fourteen
-    ;; entries in *GLFW-ERROR-CONDITIONS* -- exercised directly here the same
-    ;; way CODING_STANDARD.md's coverage exclusion allows for an
-    ;; intentionally-unreachable default clause, except this one IS covered
-    ;; by calling it directly rather than excluded.
+  (it "signals GLFW-UNKNOWN-ERROR for an unmapped code"
     (signals glfw-unknown-error (%signal-glfw-error -12345 "future GLFW version"))))

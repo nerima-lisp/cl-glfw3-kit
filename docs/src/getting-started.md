@@ -53,9 +53,8 @@ checkouts (the test system's dependencies; see `cl-glfw3-kit.asd`) and
 
 The default suite never touches a real GLFW window: `nix flake check`'s
 sandbox has no display server, so `glfwInit()` cannot succeed there. To
-exercise the real, end-to-end path against an actual window -- on a
-machine with a display, e.g. this org's own aarch64-darwin dev machines --
-run the separate hardware suite instead:
+exercise the real, end-to-end path against an actual window on a machine with
+a display, run the separate hardware suite instead:
 
 ```sh
 sbcl --script run-hardware-tests.lisp   # or: nix run .#test-hardware

@@ -1,12 +1,3 @@
-;;;; t/input-test.lisp
-;;;;
-;;;; KEY-PRESSED-P/MOUSE-BUTTON-PRESSED-P/CURSOR-POSITION each call a real
-;;;; GLFW query function on the window's own pointer directly, with no seam
-;;;; to go through -- not exercised against *STUB-WINDOW-POINTER* here for
-;;;; the same reason as t/callbacks-test.lisp. See
-;;;; t/hardware/hardware-test.lisp for the real end-to-end path. The pure
-;;;; keyword<->code translation %KEY-CODE/%MOUSE-BUTTON-CODE they marshal
-;;;; arguments through is tested below without touching GLFW at all.
 (in-package #:cl-glfw3-kit/test)
 
 (describe

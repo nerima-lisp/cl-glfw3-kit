@@ -1,4 +1,3 @@
-;;;; t/constants-test.lisp
 (in-package #:cl-glfw3-kit/test)
 
 (describe
@@ -9,11 +8,7 @@
 
   (it-property "every *GLFW-ERROR-CONDITIONS* code maps to its paired condition type"
       ((entry (gen-member *glfw-error-conditions*)))
-    ;; %SIGNAL-GLFW-ERROR directly, not *LAST-GLFW-ERROR*/%CHECK-GLFW-ERROR:
-    ;; the latter is global mutable state, and a property test runs many
-    ;; trials, so a failed match partway through (an EXPECT failure, not a
-    ;; Lisp error) would otherwise skip the cleanup and leak into whichever
-    ;; test runs next -- exactly the failure this rewrite avoids.
+    ;; Avoid leaking the global error cell across property trials.
     (expect (lambda () (%signal-glfw-error (car entry) "property test"))
             :to-throw (cdr entry)))
 

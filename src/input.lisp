@@ -1,4 +1,3 @@
-;;;; src/input.lisp
 (in-package #:cl-glfw3-kit)
 
 (define-glfw-function %glfw-get-key "glfwGetKey" sb-alien:int

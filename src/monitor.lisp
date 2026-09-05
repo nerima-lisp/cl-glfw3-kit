@@ -1,4 +1,3 @@
-;;;; src/monitor.lisp
 (in-package #:cl-glfw3-kit)
 
 (defstruct (glfw-monitor (:constructor %make-glfw-monitor (pointer)) (:copier nil))

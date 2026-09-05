@@ -24,7 +24,7 @@ the [API reference](../reference/api.md) for how to use it.
 
 ## What is not bound
 
-Deliberately out of scope for the current API surface, not forgotten:
+The following features are outside the current API surface:
 
 - Joystick and gamepad input
 - Clipboard access
@@ -34,34 +34,25 @@ Deliberately out of scope for the current API surface, not forgotten:
 - Monitor gamma ramps
 - Window icons
 
-Each is a reasonably self-contained addition once needed; none changes the
-`sb-alien`/`define-glfw-function` foundation the current surface is built
-on.
+These can be added without changing the `sb-alien`/`define-glfw-function`
+foundation.
 
 ## Why sb-alien, not cffi
 
-`cffi` would have been an external (non-org) dependency, subject to
-`DEPENDENCY_POLICY.md`'s four-condition procedure. `sb-alien` is bundled
-with SBCL itself, so it counts as an implementation dependency rather than
-an external one -- the same distinction `nerimux`'s own 2026-08-01/02
-dependency sweep relies on for its own native calls. See
-`cl-glfw3-kit.asd`'s `:depends-on` comment.
+`sb-alien` is bundled with SBCL, so it avoids adding a separate FFI
+dependency. The package uses `define-glfw-function` to keep the bindings in
+one place.
 
 ## Testing against a real display
 
-`nix flake check`'s sandbox has no display server, so `glfwInit()` itself
-cannot succeed there on Linux (it needs a `DISPLAY`/X11 connection to pick
-a platform backend). Every function that needs a real, already-initialized
-GLFW window or context lives in the `cl-glfw3-kit/hardware-test` system
-(`t/hardware/`) instead, run only by hand:
+The default checks do not require a display server. Functions that need a
+real GLFW window or context are covered by the `cl-glfw3-kit/hardware-test`
+system in `t/hardware/`:
 
 ```sh
 nix run .#test-hardware
 ```
 
-The default `cl-glfw3-kit/test` system covers everything below the FFI
-boundary that does not need a real display -- constant-table round-trips,
-the `define-glfw-function`-generated wrapper shape, window/init CPS
-lifecycle logic against a `cl-boundary-kit` recording-boundary test double
--- and stops there on purpose. See `run-coverage.lisp` for the measured
-split between what each suite covers.
+The default `cl-glfw3-kit/test` system covers constant tables, generated
+wrappers, and window/init lifecycle logic with recording-boundary test
+doubles.

@@ -1,10 +1,3 @@
-;;;; t/init-test.lisp
-;;;;
-;;;; Exercises CALL-WITH-GLFW/WITH-GLFW's own logic (error-callback install,
-;;;; success path, teardown-on-error, the defensive init-failure fallback)
-;;;; against the *INIT-FUNCTION*/*TERMINATE-FUNCTION* stub -- never against
-;;;; real GLFW, which glfwInit() cannot reach without a display. See
-;;;; t/hardware/hardware-test.lisp for the real end-to-end path.
 (in-package #:cl-glfw3-kit/test)
 
 (describe
@@ -40,10 +33,7 @@
 
 (describe
   "GLFW-VERSION / GLFW-VERSION-STRING"
-  ;; Both call the real GLFW library directly (no *INIT-FUNCTION*-style
-  ;; seam): glfwGetVersion/glfwGetVersionString are documented safe to call
-  ;; before glfwInit and read no display/platform state, unlike glfwInit
-  ;; itself -- exercised for real here rather than stubbed.
+  ;; These GLFW queries are safe before initialization and need no display.
   (it "GLFW-VERSION returns three non-negative integers"
     (multiple-value-bind (major minor revision) (glfw-version)
       (expect (>= major 3) :to-be-truthy)

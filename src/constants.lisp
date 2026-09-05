@@ -1,11 +1,3 @@
-;;;; src/constants.lisp
-;;;;
-;;;; Pure data: every GLFW integer constant this library uses, transcribed
-;;;; from GLFW/glfw3.h (GLFW 3.4, as shipped by nixpkgs' pkgs.glfw.dev,
-;;;; verified against the actual header rather than the online docs). No
-;;;; logic lives here -- library.lisp, window.lisp, input.lisp and
-;;;; monitor.lisp read these tables but never hardcode a GLFW integer of
-;;;; their own.
 (in-package #:cl-glfw3-kit)
 
 (defparameter *glfw-error-conditions*

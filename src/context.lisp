@@ -1,4 +1,3 @@
-;;;; src/context.lisp
 (in-package #:cl-glfw3-kit)
 
 (define-glfw-function %glfw-make-context-current "glfwMakeContextCurrent" sb-alien:void

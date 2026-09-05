@@ -1,4 +1,3 @@
-;;;; t/core-test.lisp
 (in-package #:cl-glfw3-kit/test)
 
 (describe
