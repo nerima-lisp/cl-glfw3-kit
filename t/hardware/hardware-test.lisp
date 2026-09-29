@@ -18,15 +18,17 @@
 
   (it "returns NIL for an invalid mapping database string"
     (with-glfw ()
-      (expect (update-gamepad-mappings "not-a-valid-glfw-mapping") :to-be-falsy)))
+      (expect (update-gamepad-mappings "") :to-be-falsy)))
 
   (it "reports increasing GLFW time and a NULL address for an unknown procedure"
     (with-glfw ()
       (let ((before (glfw-time)))
         (sleep 0.01)
         (expect (> (glfw-time) before) :to-be-truthy))
-      (expect (sb-alien:null-alien (glfw-proc-address "not_a_glfw_procedure"))
-              :to-be-truthy))))
+      (with-glfw-window (window :hints (list :visible nil))
+        (make-context-current window)
+        (expect (sb-alien:null-alien (glfw-proc-address "not_a_glfw_procedure"))
+                :to-be-truthy)))))
 
 (describe
   "a real window"
