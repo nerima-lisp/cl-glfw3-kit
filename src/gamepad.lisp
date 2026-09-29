@@ -1,10 +1,11 @@
 (in-package #:cl-glfw3-kit)
 
-(defconstant +glfw-gamepad-button-count+ 15
-  "Number of entries in GLFW_GAMEPAD_STATE.buttons.")
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (defconstant +glfw-gamepad-button-count+ 15
+    "Number of entries in GLFW_GAMEPAD_STATE.buttons.")
 
-(defconstant +glfw-gamepad-axis-count+ 6
-  "Number of entries in GLFW_GAMEPAD_STATE.axes.")
+  (defconstant +glfw-gamepad-axis-count+ 6
+    "Number of entries in GLFW_GAMEPAD_STATE.axes."))
 
 (defparameter *glfw-gamepad-buttons*
   '((:a . 0) (:b . 1) (:x . 2) (:y . 3) (:left-bumper . 4)
@@ -20,8 +21,8 @@
 
 (sb-alien:define-alien-type gamepad-state-alien
     (sb-alien:struct nil
-      (buttons (array sb-alien:unsigned-char +glfw-gamepad-button-count+))
-      (axes (array sb-alien:float +glfw-gamepad-axis-count+))))
+      (buttons (array sb-alien:unsigned-char #.+glfw-gamepad-button-count+))
+      (axes (array sb-alien:float #.+glfw-gamepad-axis-count+))))
 
 (define-glfw-function %glfw-joystick-present "glfwJoystickPresent" sb-alien:int
   (joystick sb-alien:int))
