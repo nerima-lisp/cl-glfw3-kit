@@ -13,12 +13,7 @@
     (expect (cdr (assoc :right-trigger *glfw-gamepad-axes*)) :to-equal 5)))
 
 (describe
-  "NES KEY CONSTANTS"
-  (it "provides the standard NES keyboard binding defaults"
-    (expect (cdr (assoc :a *nes-key-bindings*)) :to-equal :x)
-    (expect (cdr (assoc :b *nes-key-bindings*)) :to-equal :z)
-    (expect (cdr (assoc :start *nes-key-bindings*)) :to-equal :enter))
-
+  "KEY CONSTANTS"
   (it "exposes the keyboard codes needed for a typical NES binding"
     (expect (key-code :z) :to-equal 90)
     (expect (key-code :x) :to-equal 88)

@@ -38,8 +38,8 @@ The following features are outside the current API surface:
 - Vulkan surface creation (`glfwCreateWindowSurface`)
 - Monitor gamma ramps
 - Window icons
-- NES-specific input normalization and controller policy beyond the standard
-  GLFW key table
+- Application-specific input normalization and controller policy beyond the
+  standard GLFW key table
 
 The gamepad API uses integer joystick slots and does not impose a two-device
 limit, so two or more connected devices can be queried independently.

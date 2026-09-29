@@ -263,8 +263,8 @@ through `:z`, `:0` through `:9`, `:space`, `:escape`, `:left`, `:kp-0`,
 
 The current key table follows GLFW's `GLFW_KEY_*` constants. The table is
 exported for NES keyboard bindings, and `key-code` converts a keyword to its
-integer code. `*nes-key-bindings*` provides the standard NES-to-keyboard
-defaults (`:a`=`:x`, `:b`=`:z`, `:select`=`:right-shift`, and `:start`=`:enter`).
+integer code. The application using this generic binding selects its own
+domain-specific keyboard mapping.
 
 ### `key-code`
 
@@ -319,9 +319,10 @@ whether GLFW has a gamepad mapping for that slot.
 (gamepad-state 0) ; => a `glfw-gamepad-state`, or NIL when unavailable
 ```
 
-The returned state has fifteen button values and six axis values. Use
-`glfw-gamepad-state-buttons` and `glfw-gamepad-state-axes` to obtain the
-vectors. Button and axis indices are described by the exported
+The returned state has fifteen boolean button values and six single-float axis
+values. `glfw-gamepad-state-buttons` returns a simple vector of booleans and
+`glfw-gamepad-state-axes` returns a `(simple-array single-float (6))`. Button
+and axis indices are described by the exported
 `*glfw-gamepad-buttons*` and `*glfw-gamepad-axes*` tables.
 
 ### `update-gamepad-mappings`

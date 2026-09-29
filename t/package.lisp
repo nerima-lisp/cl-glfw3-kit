@@ -36,7 +36,7 @@
                 #:call-with-each-frame #:for-each-frame
                 ;; input
                 #:key-code #:key-pressed-p #:mouse-button-pressed-p #:cursor-position
-                #:*glfw-keys* #:*nes-key-bindings*
+                #:*glfw-keys*
                 ;; gamepad
                 #:glfw-gamepad-state #:glfw-gamepad-state-buttons
                 #:glfw-gamepad-state-axes #:joystick-present-p

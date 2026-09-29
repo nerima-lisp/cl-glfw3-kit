@@ -1,5 +1,11 @@
 (in-package #:cl-glfw3-kit)
 
+(defconstant +glfw-gamepad-button-count+ 15
+  "Number of entries in GLFW_GAMEPAD_STATE.buttons.")
+
+(defconstant +glfw-gamepad-axis-count+ 6
+  "Number of entries in GLFW_GAMEPAD_STATE.axes.")
+
 (defparameter *glfw-gamepad-buttons*
   '((:a . 0) (:b . 1) (:x . 2) (:y . 3) (:left-bumper . 4)
     (:right-bumper . 5) (:back . 6) (:start . 7) (:guide . 8)
@@ -14,8 +20,8 @@
 
 (sb-alien:define-alien-type gamepad-state-alien
     (sb-alien:struct nil
-      (buttons (array sb-alien:unsigned-char 15))
-      (axes (array sb-alien:float 6))))
+      (buttons (array sb-alien:unsigned-char +glfw-gamepad-button-count+))
+      (axes (array sb-alien:float +glfw-gamepad-axis-count+))))
 
 (define-glfw-function %glfw-joystick-present "glfwJoystickPresent" sb-alien:int
   (joystick sb-alien:int))
@@ -28,9 +34,9 @@
 
 (defstruct (glfw-gamepad-state (:constructor %make-glfw-gamepad-state (buttons axes))
                                (:copier nil))
-  "The fifteen digital buttons and six analogue axes reported by GLFW.
-BUTTONS and AXES are simple vectors indexed by the corresponding gamepad
-constant tables, or by integer index directly."
+  "The digital buttons and analogue axes reported by GLFW.
+BUTTONS is a simple vector of booleans and AXES is a simple single-float
+array, indexed by the corresponding gamepad constant tables or integer index."
   buttons
   axes)
 
@@ -45,18 +51,22 @@ JOYSTICK-ID is the integer GLFW joystick slot, normally 0 through 15."
 
 (defun gamepad-state (joystick-id)
   "Return JOYSTICK-ID's GLFW-GAMEPAD-STATE, or NIL when unavailable.
-The returned BUTTONS vector contains GLFW_PRESS/GLFW_RELEASE integers and
-the AXES vector contains single-float values in GLFW's [-1, 1] range."
+The returned BUTTONS vector contains booleans and the AXES array contains
+single-float values in GLFW's [-1, 1] range."
   (sb-alien:with-alien ((state gamepad-state-alien))
     (when (= 1 (%glfw-get-gamepad-state joystick-id (sb-alien:addr state)))
-      (let ((buttons (make-array 15))
-            (axes (make-array 6)))
-        (dotimes (index 15)
+      (let ((buttons (make-array +glfw-gamepad-button-count+
+                                :initial-element nil))
+            (axes (make-array +glfw-gamepad-axis-count+
+                              :element-type 'single-float
+                              :initial-element 0.0f0)))
+        (dotimes (index +glfw-gamepad-button-count+)
           (setf (aref buttons index)
-                (sb-alien:deref (sb-alien:slot state 'buttons) index)))
-        (dotimes (index 6)
+                (= 1 (sb-alien:deref (sb-alien:slot state 'buttons) index))))
+        (dotimes (index +glfw-gamepad-axis-count+)
           (setf (aref axes index)
-                (sb-alien:deref (sb-alien:slot state 'axes) index)))
+                (coerce (sb-alien:deref (sb-alien:slot state 'axes) index)
+                        'single-float)))
         (%make-glfw-gamepad-state buttons axes)))))
 
 (defun update-gamepad-mappings (mappings)

@@ -9,6 +9,26 @@
       (expect (plusp (length (glfw-version-string))) :to-be-truthy))))
 
 (describe
+  "runtime APIs without a window"
+  (it "reports an unused joystick slot as absent and without a gamepad state"
+    (with-glfw ()
+      (expect (joystick-present-p 15) :to-be-falsy)
+      (expect (joystick-gamepad-p 15) :to-be-falsy)
+      (expect (gamepad-state 15) :to-be-falsy)))
+
+  (it "returns NIL for an invalid mapping database string"
+    (with-glfw ()
+      (expect (update-gamepad-mappings "not-a-valid-glfw-mapping") :to-be-falsy)))
+
+  (it "reports increasing GLFW time and a NULL address for an unknown procedure"
+    (with-glfw ()
+      (let ((before (glfw-time)))
+        (sleep 0.01)
+        (expect (> (glfw-time) before) :to-be-truthy))
+      (expect (sb-alien:null-alien (glfw-proc-address "not_a_glfw_procedure"))
+              :to-be-truthy))))
+
+(describe
   "a real window"
   (it "creates an invisible window with the requested size and title"
     (with-glfw ()

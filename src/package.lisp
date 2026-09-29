@@ -89,7 +89,6 @@
    #:glfw-gamepad-state-p
    #:glfw-gamepad-state-buttons
    #:glfw-gamepad-state-axes
-   #:*nes-key-bindings*
    #:joystick-present-p
    #:joystick-gamepad-p
    #:gamepad-state
