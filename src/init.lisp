@@ -5,6 +5,9 @@
 (define-glfw-function %glfw-get-version "glfwGetVersion" sb-alien:void
   (major (* sb-alien:int)) (minor (* sb-alien:int)) (revision (* sb-alien:int)))
 (define-glfw-function glfw-version-string "glfwGetVersionString" sb-alien:c-string)
+(define-glfw-function glfw-time "glfwGetTime" sb-alien:double)
+(define-glfw-function glfw-proc-address "glfwGetProcAddress" (* t)
+  (name sb-alien:c-string))
 (define-glfw-function %glfw-set-error-callback "glfwSetErrorCallback" (* t)
   (callback (* t)))
 

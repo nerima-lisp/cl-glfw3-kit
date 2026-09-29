@@ -7,6 +7,13 @@ contexts and handling keyboard, mouse, and monitor input.
 The current implementation targets SBCL and uses its built-in `sb-alien`
 FFI; it does not depend on CFFI.
 
+The implemented `0.2.0` surface covers window and framebuffer lifecycle,
+keyboard and mouse queries, scoped callbacks, event polling, context
+management, monitor/video-mode queries, gamepad state and mapping updates,
+and GLFW time/procedure lookup. The exported `*glfw-keys*` table and
+`key-code` support NES keyboard bindings; controller policy remains in the
+frontend.
+
 ## Status
 
 Window lifecycle, hints, the event loop, context management, input

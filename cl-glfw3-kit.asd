@@ -25,6 +25,7 @@ docs/src/getting-started.md for the library path configuration."
    (:file "callbacks")
    (:file "input")
    (:file "context")
+   (:file "gamepad")
    (:file "monitor"))
   :in-order-to ((test-op (test-op "cl-glfw3-kit/test"))))
 
@@ -55,6 +56,7 @@ docs/src/getting-started.md for the library path configuration."
    (:file "callbacks-test")
    (:file "input-test")
    (:file "context-test")
+   (:file "gamepad-test")
    (:file "monitor-test"))
   :perform (test-op (operation component)
              (declare (ignore operation component))

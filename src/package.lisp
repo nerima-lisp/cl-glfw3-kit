@@ -74,11 +74,28 @@
    #:wait-events-timeout
    #:call-with-each-frame
    #:for-each-frame
+   #:glfw-time
+   #:glfw-proc-address
 
    ;; input queries
+   #:key-code
    #:key-pressed-p
    #:mouse-button-pressed-p
    #:cursor-position
+   #:*glfw-keys*
+
+   ;; joystick/gamepad
+   #:glfw-gamepad-state
+   #:glfw-gamepad-state-p
+   #:glfw-gamepad-state-buttons
+   #:glfw-gamepad-state-axes
+   #:*nes-key-bindings*
+   #:joystick-present-p
+   #:joystick-gamepad-p
+   #:gamepad-state
+   #:update-gamepad-mappings
+   #:*glfw-gamepad-buttons*
+   #:*glfw-gamepad-axes*
 
    ;; monitor
    #:glfw-monitor

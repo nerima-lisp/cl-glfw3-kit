@@ -113,3 +113,10 @@ for a key or mouse button event.")
     (:caps-lock . #x0010) (:num-lock . #x0020))
   "Keyword -> GLFW_MOD_* bitmask value, decoded from a callback's MODS
 argument into a list of the modifier keywords currently held.")
+
+(defparameter *nes-key-bindings*
+  '((:a . :x) (:b . :z) (:select . :right-shift) (:start . :enter)
+    (:up . :up) (:down . :down) (:left . :left) (:right . :right))
+  "NES control keyword -> GLFW key keyword for the standard keyboard layout.
+Use the mapped value with KEY-PRESSED-P, or compare it with the KEY argument
+received by the key callback.")
