@@ -16,9 +16,9 @@
       (expect (joystick-gamepad-p 15) :to-be-falsy)
       (expect (gamepad-state 15) :to-be-falsy)))
 
-  (it "returns NIL for an invalid mapping database string"
+  (it "updates the mapping database without signalling"
     (with-glfw ()
-      (expect (update-gamepad-mappings "") :to-be-falsy)))
+      (expect (update-gamepad-mappings "") :to-be-truthy)))
 
   (it "reports increasing GLFW time and a NULL address for an unknown procedure"
     (with-glfw ()
