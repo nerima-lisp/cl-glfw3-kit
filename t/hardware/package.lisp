@@ -4,12 +4,15 @@
   (:import-from #:cl-weave #:it #:expect #:expect-not #:signals #:run-all)
   (:import-from #:cl-glfw3-kit
                 #:with-glfw #:glfw-version #:glfw-version-string
+                #:glfw-time #:glfw-proc-address
                 #:with-glfw-window #:with-glfw-callbacks
                 #:window-should-close-p #:set-window-should-close
                 #:window-size #:framebuffer-size #:window-title #:set-window-title
                 #:make-context-current #:swap-interval #:swap-buffers
                 #:for-each-frame
                 #:key-pressed-p #:mouse-button-pressed-p #:cursor-position
+                #:joystick-present-p #:joystick-gamepad-p #:gamepad-state
+                #:update-gamepad-mappings
                 #:primary-monitor #:list-monitors #:video-mode
                 #:video-mode-width #:video-mode-height #:video-mode-refresh-rate)
   (:export #:run-hardware-tests))

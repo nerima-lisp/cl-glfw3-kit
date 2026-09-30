@@ -12,6 +12,10 @@
   (or (cdr (assoc key *glfw-keys*))
       (error 'glfw-invalid-enum :description (format nil "~S is not a known key" key))))
 
+(defun key-code (key)
+  "Return the GLFW integer code for KEY, a keyword from *GLFW-KEYS*."
+  (%key-code key))
+
 (defun %mouse-button-code (button)
   "Translate a *GLFW-MOUSE-BUTTONS* keyword into its GLFW button code."
   (or (cdr (assoc button *glfw-mouse-buttons*))

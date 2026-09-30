@@ -41,6 +41,12 @@ are all continuation-passing: each guarantees its own teardown (GLFW
 termination, window destruction, callback removal) once its body returns
 or signals, so nothing needs an explicit `unwind-protect` at the call site.
 
+`for-each-frame` polls events before each body invocation and swaps buffers
+after it by default. Pass `:swap-buffers-p nil` when the caller owns buffer
+presentation. The callback layer translates keyboard and mouse codes to
+keywords and supplies framebuffer-size notifications; see the [API
+reference](reference/api.md) for all callback arguments.
+
 ## Running the tests
 
 ```sh

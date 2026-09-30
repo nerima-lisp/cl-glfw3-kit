@@ -4,8 +4,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Documentation](https://img.shields.io/badge/docs-MkDocs%20Material-0a7a5a)](https://nerima-lisp.github.io/cl-glfw3-kit/)
 
-Common Lisp bindings for [GLFW3](https://www.glfw.org/), targeting SBCL —
-window, input, and OpenGL/OpenGL-ES context management, via SBCL's own
+Common Lisp bindings for [GLFW3](https://www.glfw.org/), targeting SBCL,
+covering window, framebuffer, input, callbacks, and OpenGL/OpenGL-ES context management, via SBCL's own
 `sb-alien` FFI rather than cffi. See
 [docs/src/project/roadmap.md](docs/src/project/roadmap.md) for the bound
 surface and what is out of scope.
@@ -37,13 +37,16 @@ for the full walkthrough.
 ```nix
 # flake.nix
 inputs.cl-glfw3-kit = {
-  url = "github:nerima-lisp/cl-glfw3-kit/v0.1.0";
+  url = "github:nerima-lisp/cl-glfw3-kit/v0.2.0";
   inputs.nixpkgs.follows = "nixpkgs";
 };
 ```
 
 Note the pinned tag. Consumers should pin a release tag rather than follow the
 default branch.
+
+The ASDF systems currently declare version `0.2.0`. No `v0.2.0` tag or GitHub
+Release exists yet; the release procedure is recorded in the delivery report.
 
 ## Documentation
 

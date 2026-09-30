@@ -21,18 +21,28 @@ the [API reference](../reference/api.md) for how to use it.
   `with-glfw-callbacks`
 - Monitor enumeration and video modes (`primary-monitor`, `list-monitors`,
   `video-mode`)
+- Gamepad presence, mapping detection, state, and mapping updates for integer
+  joystick slots
+- GLFW time and procedure lookup (`glfw-time`, `glfw-proc-address`)
+- The exported function forms behind the convenience macros (`call-with-glfw`,
+  `call-with-glfw-window`, `call-with-glfw-callbacks`, and
+  `call-with-each-frame`)
 
 ## What is not bound
 
 The following features are outside the current API surface:
 
-- Joystick and gamepad input
 - Clipboard access
 - Custom cursor images
 - Native/platform-specific window handles (`glfwGetX11Window` and similar)
 - Vulkan surface creation (`glfwCreateWindowSurface`)
 - Monitor gamma ramps
 - Window icons
+- Application-specific input normalization and controller policy beyond the
+  standard GLFW key table
+
+The gamepad API uses integer joystick slots and does not impose a two-device
+limit, so two or more connected devices can be queried independently.
 
 These can be added without changing the `sb-alien`/`define-glfw-function`
 foundation.

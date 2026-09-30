@@ -35,7 +35,13 @@
                 #:poll-events #:wait-events #:wait-events-timeout
                 #:call-with-each-frame #:for-each-frame
                 ;; input
-                #:key-pressed-p #:mouse-button-pressed-p #:cursor-position
+                #:key-code #:key-pressed-p #:mouse-button-pressed-p #:cursor-position
+                #:*glfw-keys*
+                ;; gamepad
+                #:glfw-gamepad-state #:glfw-gamepad-state-buttons
+                #:glfw-gamepad-state-axes #:joystick-present-p
+                #:joystick-gamepad-p #:gamepad-state #:update-gamepad-mappings
+                #:*glfw-gamepad-buttons* #:*glfw-gamepad-axes*
                 ;; monitor
                 #:glfw-monitor #:glfw-monitor-p
                 #:primary-monitor #:list-monitors #:video-mode
@@ -51,7 +57,7 @@
                 #:*glfw-error-conditions* #:*glfw-boolean-window-hints*
                 #:*glfw-integer-window-hints* #:*glfw-enum-window-hints*
                 #:*glfw-client-api-values* #:*glfw-opengl-profile-values*
-                #:*glfw-keys* #:*glfw-mouse-buttons* #:*glfw-actions* #:*glfw-mod-keys*)
+                #:*glfw-mouse-buttons* #:*glfw-actions* #:*glfw-mod-keys*)
   (:export #:run-tests))
 
 (in-package #:cl-glfw3-kit/test)
